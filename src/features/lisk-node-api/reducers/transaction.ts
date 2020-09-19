@@ -1,31 +1,28 @@
 import {combineReducers} from "redux";
 import {createReducer} from "typesafe-actions";
-import {fetchTransactionAsync} from "../actions/transaction";
+import {fetchTransactionAsync, fetchTransactionListAsync} from "../actions/transaction";
+import {LiskTransaction} from "../../../services/types";
 
 export type TransactionState = Readonly<{
-  readonly isLoading: boolean;
-  readonly entities: {
-    [key: string]: object;
-  };
+  isLoading: boolean;
+  entity?: LiskTransaction;
+  entities: LiskTransaction[];
 }>
 
 export const initialState: TransactionState = {
   isLoading: false,
-  entities: {},
+  entity: undefined,
+  entities: [],
 };
 
 export default combineReducers({
   isLoading: createReducer(initialState.isLoading)
     .handleAction(fetchTransactionAsync.request, () => true)
-    .handleAction([
-      fetchTransactionAsync.success,
-      fetchTransactionAsync.failure,
-    ], () => false),
+    .handleAction([fetchTransactionAsync.success, fetchTransactionAsync.failure], () => false),
+  entity: createReducer(initialState.entity)
+    .handleAction(fetchTransactionAsync.success, (state, action) => action.payload)
+    .handleAction(fetchTransactionAsync.failure, () => undefined),
   entities: createReducer(initialState.entities)
-    .handleAction(fetchTransactionAsync.success, (state, action) => {
-      return {
-        ...state,
-        [action.payload.id]: action.payload,
-      }
-    })
+    .handleAction(fetchTransactionListAsync.success, (state, action) => action.payload)
+    .handleAction(fetchTransactionListAsync.failure, () => [])
 });

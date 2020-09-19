@@ -1,6 +1,7 @@
 import {createAsyncAction} from "typesafe-actions";
 import {APIErrorResponse} from "@liskhq/lisk-api-client/dist-node/api_types";
 import {LiskTransaction, LiskTransactionId} from "services/types";
+import {LiskFetchTransactionPayload} from "../../../services/lisk-node/types";
 
 export const fetchTransactionAsync = createAsyncAction(
   'FETCH_TRANSACTION_REQUEST',
@@ -12,4 +13,4 @@ export const fetchTransactionListAsync = createAsyncAction(
   'FETCH_TRANSACTION_LIST_REQUEST',
   'FETCH_TRANSACTION_LIST_SUCCESS',
   'FETCH_TRANSACTION_LIST_FAILURE'
-)<LiskTransactionId[], LiskTransaction[], APIErrorResponse>();
+)<LiskFetchTransactionPayload, LiskTransaction[], APIErrorResponse>();
