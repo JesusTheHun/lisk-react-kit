@@ -23,8 +23,8 @@ export class MainLayout extends React.Component<Props, State> {
       <Content className='uk-padding-small'>
         {this.props.children}
       </Content>
-      <Footer className='uk-text-center'>Lisk React Kit ©2020 Created by
-        <a href="https://jesusthehun.com">JesusTheHun</a></Footer>
+      <Footer className='uk-text-center'>Lisk React Kit ©2020 Created by <a
+        href="https://jesusthehun.com">JesusTheHun</a></Footer>
     </Layout>;
   }
 }
