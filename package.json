@@ -19,7 +19,7 @@
     "axios": "^0.19.1",
     "babel-plugin-react-intl": "^5.1.18",
     "connected-react-router": "latest",
-    "history": "latest",
+    "history": "4.10.1",
     "lisk-transaction-faucet": "^1.0.4",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
