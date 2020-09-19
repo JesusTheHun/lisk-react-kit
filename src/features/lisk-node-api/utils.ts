@@ -1,4 +1,5 @@
 import lisk from '@liskhq/lisk-client';
+import {LiskAccountCredentials} from "../../services/types";
 
 export const generateNewAccount = () => {
   const passphrase = lisk.passphrase.Mnemonic.generateMnemonic();
@@ -8,5 +9,5 @@ export const generateNewAccount = () => {
     passphrase,
     publicKey,
     address,
-  };
+  } as LiskAccountCredentials;
 };
