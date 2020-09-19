@@ -1,43 +1,8 @@
-# FeatChain - The achievement blockchain
+### Contributions
 
-The FeatChain project aims to provide a single source of truth for people's achievement.
-Authorities awards users upon their feat, and this can later be verified by institutions or corporations on the platform.
-Since it's run on a blockchain, FeatChain is a trustless platform.
+I will gladly accept PRs for this project. If you want to contribute but don't know what to do, here is a list of things that need work :
 
-### Prerequisites
-
-This project is build using the [Lisk](https://lisk.io) SDK. You can follow their setup guide [here](https://lisk.io/documentation/lisk-sdk/setup.html).
-
-### Installing from sources
-
-Edit `blockchain/.env` to match your system installation of Postgres.
-Then :
-
-```bash
-cd blockchain
-nvm use
-npm i
-npm start.
-cd ../webapp
-yarn
-npm start
-```
-
-### Installing from Docker Compose
-
-```bash
-docker pull jesusthehun/featchain-blockchain
-docker pull jesusthehun/featchain-webapp
-docker-compose up -d
-```
-
-You can then access to the interface at http://localhost:8080
-
-If you use a docker machine and therefore you do not access containers services through `localhost` you have to change the environment variable in `.env` to set the correct value.
-
-```bash
-PUBLIC_API_URL=http://docker_machine:4000
-```
+- Inconsistent error return from service to epic
 
 ### Build With
 
@@ -47,15 +12,10 @@ PUBLIC_API_URL=http://docker_machine:4000
 * [Redux]() for the front-end data management
 * [typesafe-actions](https://github.com/piotrwitek/typesafe-actions) for Redux type safety 
 
-### Acknowledgments
-
-Special mention to this [**fantastic** typescript guide](https://github.com/piotrwitek/react-redux-typescript-guide).
-If this guide is useful to you, please consider a donation. Even 1$ is useful. 
-
 ### Authors
 
 This project has been developed by Jonathan 'JesusTheHun' MASSUCHETTI.
 
 ### License
 
-This project is licensed under the GPL v3 License
+Licensed under the GPL v3 License
