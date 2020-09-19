@@ -1,6 +1,5 @@
 import {StateType, ActionType} from 'typesafe-actions';
 import {Epic} from 'redux-observable';
-import {Services} from "../services/types";
 
 export type Store = StateType<typeof import('./index').default>;
 export type Services = typeof import('services').default;
