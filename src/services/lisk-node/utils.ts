@@ -1,6 +1,7 @@
 import {getNetworkIdentifier} from "@liskhq/lisk-cryptography";
 import {EPOCH_TIME} from "@liskhq/lisk-constants";
 import {APIClient} from "@liskhq/lisk-api-client";
+import {Timestamp} from "../types";
 
 export const networkIdentifier = getNetworkIdentifier(
   "23ce0366ef0a14a91e5fd4b1591fc880ffbef9d988ff8bebf8f3666b0c09597d",
@@ -10,7 +11,7 @@ export const networkIdentifier = getNetworkIdentifier(
 export const getBlockchainTimestamp = () => {
   const millisSinceEpoc = Date.now() - EPOCH_TIME.getTime();
   const inSeconds = ((millisSinceEpoc) / 1000).toFixed(0);
-  return parseInt(inSeconds);
+  return parseInt(inSeconds) as Timestamp;
 };
 
 export const getClient = () => {
