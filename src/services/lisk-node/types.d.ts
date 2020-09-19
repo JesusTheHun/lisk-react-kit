@@ -1,4 +1,4 @@
-import {LiskAddress, LiskPublicKey, Timestamp} from "../types";
+import {LiskAddress, LiskPublicKey, LiskTransactionId, LiskTransactionType, Timestamp} from "../types";
 
 export type LiskTransactionPayload<Asset> = {
   networkIdentifier: string;
@@ -13,6 +13,8 @@ export type LiskFetchPagination = {
 
 export type LiskSortOrder = "asc" | "desc";
 
+// Accounts
+
 export type LiskFetchAccountSortFields = "balance" | "username";
 
 export type LiskFetchAccountSort = {
@@ -20,13 +22,43 @@ export type LiskFetchAccountSort = {
 }
 
 export type LiskFetchAccountFilters = {
-  address: LiskAddress;
-  publicKey: LiskPublicKey;
-  secondPublicKey: LiskPublicKey;
-  username: string;
+  id: LiskTransactionId;
+  recipientId: LiskAddress;
+  recipientPublicKey: LiskPublicKey;
+  senderId: LiskAddress;
+  senderPublicKey: LiskPublicKey;
+  senderIdOrRecipientId: LiskAddress;
+  type: LiskTransactionType;
+  height: number;
+  minAmount: number;
+  maxAmount: number;
+  fromTimestamp: Timestamp;
+  toTimestamp: Timestamp;
+  blockId: string;
+  data: string;
 };
 
 export type LiskFetchAccountPayload =
   Partial<LiskFetchPagination>
   & Partial<LiskFetchAccountSort>
   & Partial<LiskFetchAccountFilters>;
+
+// Transactions
+
+export type LiskFetchTransactionSortFields = "amount" | "fee" | "type" | "timestamp";
+
+export type LiskFetchTransactionSort = {
+  [key in LiskFetchAccountSortFields]?: LiskSortOrder;
+}
+
+export type LiskFetchTransactionFilters = {
+  address: LiskAddress;
+  publicKey: LiskPublicKey;
+  secondPublicKey: LiskPublicKey;
+  username: string;
+};
+
+export type LiskFetchTransactionPayload =
+  Partial<LiskFetchPagination>
+  & Partial<LiskFetchTransactionSort>
+  & Partial<LiskFetchTransactionFilters>;
