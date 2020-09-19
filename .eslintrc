@@ -1,0 +1,33 @@
+{
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "react-app",
+        "./node_modules/react-redux-typescript-scripts/eslint.js",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": [
+                    "src"
+                ]
+            }
+        }
+    },
+    "rules": {
+        "no-unused-vars": [
+            "warn",
+            {
+                "vars": "local"
+            }
+        ],
+        "no-unused-expressions": "warn",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/no-non-null-assertion": "off"
+    }
+}

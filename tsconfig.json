@@ -1,0 +1,18 @@
+{
+  "include": [
+    "src",
+    "typings"
+  ],
+  "exclude": [
+    "src/**/*.spec.*"
+  ],
+  "extends": "./node_modules/react-redux-typescript-scripts/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "lib": [
+      "dom",
+      "es2019"
+    ],
+    "jsx": "react"
+  }
+}

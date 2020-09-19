@@ -1,0 +1,5 @@
+.env.*.local
+*.iml
+*.idea
+build
+node_modules
