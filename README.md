@@ -116,3 +116,9 @@ This project has been developed by Jonathan 'JesusTheHun' MASSUCHETTI.
 ### License
 
 Licensed under the GPL v3 License
+
+### Support & Donations
+
+I'm currently running a campaign to become a forging delegate. My delegate name is `jesusthehun`. 
+You can share your support by voting for me !
+You can also support the development of this repo by making a donation to `14260358272659413479L`
