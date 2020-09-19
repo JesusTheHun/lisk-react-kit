@@ -1,5 +1,5 @@
-import * as faucet from './faucet-sdk-v3';
-import liskNodeApi from './lisk-node-sdk-v3';
+import * as faucet from './faucet';
+import * as liskNodeApi from './lisk-node';
 
 export default {
   faucet,
