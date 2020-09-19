@@ -1,15 +1,19 @@
 import React from "react";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {getPath} from "../utils/router-paths";
 import {Button, Card, Typography} from "antd";
 import {connect} from "react-redux";
 import {SyncOutlined} from "@ant-design/icons";
 import _ from "lodash";
 import {utils} from "@liskhq/lisk-transactions";
+import {RootState} from 'store/types';
+import {fetchAccountAsync} from "../features/lisk-node-api/actions/account";
+import {LiskAddress} from "../services/types";
 
 type State = {};
 
-type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & RouteComponentProps<any>;
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & RouteComponentProps<any> & {
+  address: LiskAddress;
+};
 
 export class AccountDetails extends React.Component<Props, State> {
 
@@ -30,12 +34,7 @@ export class AccountDetails extends React.Component<Props, State> {
   }
 
   refreshAccountDetails = () => {
-    if (!_.isString(this.props.account.entity.address) || _.isEmpty(this.props.account.entity.address)) {
-      this.props.history.push(getPath("login"));
-      return;
-    }
-
-    this.props.fetchAccountDetails(this.props.account.entity.address)
+    this.props.fetchAccount(this.props.address)
   };
 
   render() {
@@ -46,22 +45,23 @@ export class AccountDetails extends React.Component<Props, State> {
     >
       <div>
         <strong>Address</strong> : <Typography.Text copyable>
-        {this.props.account.entity.address}
+        {this.props.address}
       </Typography.Text>
       </div>
       <div>
-        <strong>Balance</strong> : {this.props.account.entity.details ? utils.convertBeddowsToLSK(this.props.account.entity.details.balance) : 0} FC
+        <strong>Balance</strong> : {this.props.account.entity ? utils.convertBeddowsToLSK(this.props.account.entity.balance) : 0} LSK
       </div>
     </Card>
   }
 }
 
 const mapStateToProps = (state: RootState) => ({
-  account: state.featchain.account,
+  auth: state.auth,
+  account: state.lisk.account,
 });
 
 const mapDispatchToProps = {
-  fetchAccountDetails: fetchAccountDetailsWish,
+  fetchAccount: fetchAccountAsync.request,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AccountDetails));

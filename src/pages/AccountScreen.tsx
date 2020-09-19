@@ -60,7 +60,7 @@ export class AccountScreen extends React.Component<Props, State> {
 
         </div>
 
-        <AccountDetailsComponent/>
+        <AccountDetailsComponent address={this.props.auth.address!}/>
 
       </div>
     </MainLayout>;
