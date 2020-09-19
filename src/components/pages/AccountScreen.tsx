@@ -1,5 +1,4 @@
 import React from 'react';
-import {FormattedMessage} from 'react-intl';
 import {Typography, Button, Modal} from 'antd';
 import {connect} from 'react-redux';
 import {withRouter, RouteComponentProps} from "react-router-dom";
@@ -46,7 +45,7 @@ export class AccountScreen extends React.Component<Props, State> {
     return <MainLayout>
       <div className="uk-flex uk-flex-column uk-height-1-1">
         <Typography.Title className={'uk-text-center'}>
-          <FormattedMessage id="hi" defaultMessage={"Your account"}/>
+          Your account
         </Typography.Title>
 
         <Modal title="Link to your account" visible={this.state.isModalOpen} footer={[]} onCancel={this.toggleModal}>
