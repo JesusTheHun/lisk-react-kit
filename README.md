@@ -78,18 +78,19 @@ export const postTransferTransactionAsync = createAsyncAction(
 )<LiskPostTransactionPayload<LiskPostTransactionAssetTransfer>, LiskTransaction, APIErrorResponse>();
 ```
 
-Epic
+And the epic
 
 ```typescript
-export const postTransactionsEpic: RootEpic = (action$, state$, {liskNodeApi}) => {
+export const postTransferTransactionsEpic: RootEpic = (action$, state$, {liskNodeApi}) => {
   return action$.pipe(
-    filter(isActionOf(fetchTransactionListAsync.request)),
-    concatMap(action =>
-      from(liskNodeApi.fetchTransactions(action.payload)).pipe(
-        map(fetchTransactionListAsync.success),
-        catchError(message => of(fetchTransactionListAsync.failure(message)))
+    filter(isActionOf(postTransferTransactionAsync.request)),
+    mergeMap(action => {
+      // ... 
+      return from(liskNodeApi.postTransferTransaction(action.payload, state$.value.auth.passphrase)).pipe(
+        map(postTransferTransactionAsync.success),
+        catchError(message => of(postTransferTransactionAsync.failure(message)))
       )
-    )
+    })
   );
 };
 ```
