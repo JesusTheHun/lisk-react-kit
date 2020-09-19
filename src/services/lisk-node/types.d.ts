@@ -1,10 +1,15 @@
-import {LiskAddress, LiskPublicKey, LiskTransactionId, LiskTransactionType, Timestamp} from "../types";
+/**
+ * Contains types used to perform requests
+ */
 
-export type LiskTransactionPayload<Asset> = {
-  networkIdentifier: string;
-  timestamp: Timestamp;
-  asset: Asset;
-}
+import {
+  LiskAddress,
+  LiskPublicKey,
+  LiskTransactionId,
+  LiskNativeTransactionType,
+  Timestamp,
+  LiskTransactionType, Beddows
+} from "../types";
 
 export type LiskFetchPagination = {
   limit?: number;
@@ -28,7 +33,7 @@ export type LiskFetchAccountFilters = {
   senderId: LiskAddress;
   senderPublicKey: LiskPublicKey;
   senderIdOrRecipientId: LiskAddress;
-  type: LiskTransactionType;
+  type: LiskNativeTransactionType;
   height: number;
   minAmount: number;
   maxAmount: number;
@@ -62,3 +67,15 @@ export type LiskFetchTransactionPayload =
   Partial<LiskFetchPagination>
   & Partial<LiskFetchTransactionSort>
   & Partial<LiskFetchTransactionFilters>;
+
+export type LiskPostTransactionPayload<Asset = {}> = {
+  networkIdentifier: string;
+  timestamp: Timestamp;
+  asset: Asset;
+}
+
+export type LiskPostTransactionAssetTransfer = {
+  data?: string;
+  amount: Beddows;
+  recipientId: LiskAddress;
+};

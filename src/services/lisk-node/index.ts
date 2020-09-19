@@ -1,6 +1,13 @@
-import {getClient} from "./utils";
-import {LiskAccount, LiskTransaction, LiskAddress, LiskTransactionId} from 'services/types';
-import {LiskFetchAccountPayload, LiskFetchTransactionPayload} from './types';
+import {getClient, networkIdentifier, getBlockchainTimestamp} from "./utils";
+import {LiskAccount, LiskTransaction, LiskAddress, LiskTransactionId, LiskPassphrase} from 'services/types';
+import {
+  LiskFetchAccountPayload,
+  LiskFetchTransactionPayload,
+  LiskPostTransactionAssetTransfer,
+  LiskPostTransactionPayload
+} from './types';
+import {TransferTransaction} from "@liskhq/lisk-transactions";
+import {APIResponse} from "@liskhq/lisk-api-client/dist-node/api_types";
 
 const client = getClient();
 
@@ -34,4 +41,19 @@ export function fetchTransactions<T = LiskTransaction>(fetchParams: LiskFetchTra
   return client.transactions.get(fetchParams).then(r => {
     return r.data as T[];
   });
+}
+
+
+export function postTransferTransaction<T = LiskPostTransactionAssetTransfer>(payload: T, passphrase: LiskPassphrase): Promise<APIResponse> {
+
+  const transactionPayload: LiskPostTransactionPayload<T> = {
+    networkIdentifier,
+    timestamp: getBlockchainTimestamp(),
+    asset: payload,
+  };
+
+  const transaction = new TransferTransaction(transactionPayload);
+  transaction.sign(passphrase);
+
+  return client.transactions.broadcast(transaction.toJSON());
 }

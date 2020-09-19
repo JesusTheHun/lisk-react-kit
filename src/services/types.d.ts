@@ -1,3 +1,8 @@
+/**
+ * Contains all Lisk Types
+ */
+
+
 import {Brand} from "utility-types";
 import {Account} from '@liskhq/lisk-transactions';
 
@@ -11,7 +16,10 @@ export type LiskPublicKey = Brand<string, "LiskPublicKey">;
 
 export type LiskTransactionId = Brand<string, "LiskTransactionId">;
 export type LiskBlockId = Brand<string, "LiskBlockId">;
-export type LiskTransactionType = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type LiskNativeTransactionType = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+// Add your custom transaction type at the end
+export type LiskTransactionType = LiskNativeTransactionType & 1000;
 
 export interface LiskAccountCredentials {
   passphrase: LiskPassphrase;
@@ -28,7 +36,7 @@ export interface LiskTransaction {
   id: LiskTransactionId;
   amount: Beddows;
   fee: Beddows;
-  type: LiskTransactionType;
+  type: LiskNativeTransactionType;
   height: number;
   blockId: LiskBlockId;
   timestamp: Timestamp;

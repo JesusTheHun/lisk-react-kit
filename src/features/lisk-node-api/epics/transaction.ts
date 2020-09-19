@@ -1,9 +1,10 @@
 import {from, of} from 'rxjs';
-import {filter, switchMap, map, catchError} from 'rxjs/operators';
+import {filter, switchMap, map, catchError, mergeMap} from 'rxjs/operators';
 import {isActionOf} from 'typesafe-actions';
 
 import {RootEpic} from "store/types";
-import {fetchTransactionAsync, fetchTransactionListAsync} from "../actions/transaction";
+import {fetchTransactionAsync, fetchTransactionListAsync, postTransferTransactionAsync} from "../actions/transaction";
+import {notAuthenticatedErrorAction} from "../../auth/actions";
 
 export const fetchTransactionEpic: RootEpic = (action$, state$, {liskNodeApi}) => {
   return action$.pipe(
@@ -26,5 +27,25 @@ export const fetchTransactionsEpic: RootEpic = (action$, state$, {liskNodeApi}) 
         catchError(message => of(fetchTransactionListAsync.failure(message)))
       )
     )
+  );
+};
+
+export const postTransferTransactionsEpic: RootEpic = (action$, state$, {liskNodeApi}) => {
+  return action$.pipe(
+    filter(isActionOf(postTransferTransactionAsync.request)),
+    mergeMap(action => {
+
+      if (!state$.value.auth.passphrase) {
+        return of(
+          notAuthenticatedErrorAction(),
+          postTransferTransactionAsync.failure({message: "no passphrase"}),
+        );
+      }
+
+      return from(liskNodeApi.postTransferTransaction(action.payload, state$.value.auth.passphrase)).pipe(
+        map(postTransferTransactionAsync.success),
+        catchError(message => of(postTransferTransactionAsync.failure(message)))
+      )
+    })
   );
 };
