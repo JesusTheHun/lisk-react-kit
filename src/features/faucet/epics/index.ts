@@ -11,7 +11,7 @@ export const faucetEpic: RootEpic = (action$, state$, {faucet}) => {
     filter(isActionOf(faucetAboundAsync.request)),
     mergeMap(action => {
 
-      if (state$.value.auth.passphrase === undefined) {
+      if (!state$.value.auth.passphrase) {
         return of(
           notAuthenticatedErrorAction(),
           faucetAboundAsync.failure({message: "no passphrase"}),

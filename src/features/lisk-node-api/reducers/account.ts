@@ -5,14 +5,14 @@ import {LiskAccount} from "../../../services/types";
 
 export type AccountState = Readonly<{
   isLoading: boolean;
-  entity?: LiskAccount;
-  entities: LiskAccount[];
+  entity: LiskAccount | null;
+  entities: LiskAccount[] | null;
 }>
 
 export const initialState: AccountState = {
   isLoading: false,
-  entity: undefined,
-  entities: [],
+  entity: null,
+  entities: null,
 };
 
 export default combineReducers({
@@ -21,8 +21,8 @@ export default combineReducers({
     .handleAction([fetchAccountAsync.success, fetchAccountAsync.failure], () => false),
   entity: createReducer(initialState.entity)
     .handleAction(fetchAccountAsync.success, (state, action) => action.payload)
-    .handleAction(fetchAccountAsync.failure, () => undefined),
+    .handleAction(fetchAccountAsync.failure, () => null),
   entities: createReducer(initialState.entities)
     .handleAction(fetchAccountListAsync.success, (state, action) => action.payload)
-    .handleAction(fetchAccountListAsync.failure, () => [])
+    .handleAction(fetchAccountListAsync.failure, () => null)
 });

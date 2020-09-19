@@ -5,14 +5,14 @@ import {LiskTransaction} from "../../../services/types";
 
 export type TransactionState = Readonly<{
   isLoading: boolean;
-  entity?: LiskTransaction;
-  entities: LiskTransaction[];
+  entity: LiskTransaction | null;
+  entities: LiskTransaction[] | null;
 }>
 
 export const initialState: TransactionState = {
   isLoading: false,
-  entity: undefined,
-  entities: [],
+  entity: null,
+  entities: null,
 };
 
 export default combineReducers({
@@ -21,8 +21,8 @@ export default combineReducers({
     .handleAction([fetchTransactionAsync.success, fetchTransactionAsync.failure], () => false),
   entity: createReducer(initialState.entity)
     .handleAction(fetchTransactionAsync.success, (state, action) => action.payload)
-    .handleAction(fetchTransactionAsync.failure, () => undefined),
+    .handleAction(fetchTransactionAsync.failure, () => null),
   entities: createReducer(initialState.entities)
     .handleAction(fetchTransactionListAsync.success, (state, action) => action.payload)
-    .handleAction(fetchTransactionListAsync.failure, () => [])
+    .handleAction(fetchTransactionListAsync.failure, () => null)
 });

@@ -2,7 +2,7 @@ import {from, of} from 'rxjs';
 import {filter, switchMap, catchError, map} from 'rxjs/operators';
 import {isActionOf} from 'typesafe-actions';
 import {fetchAccountAsync, fetchAccountListAsync} from "../actions/account";
-import {RootEpic} from "../../../store/types";
+import {RootEpic} from "store/types";
 
 export const fetchAccountEpic: RootEpic = (action$, state$, {liskNodeApi}) => {
   return action$.pipe(
