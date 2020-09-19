@@ -3,7 +3,6 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {Button, Card, Typography} from "antd";
 import {connect} from "react-redux";
 import {SyncOutlined} from "@ant-design/icons";
-import _ from "lodash";
 import {utils} from "@liskhq/lisk-transactions";
 import {RootState} from 'store/types';
 import {fetchAccountAsync} from "../features/lisk-node-api/actions/account";

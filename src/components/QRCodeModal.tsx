@@ -1,5 +1,4 @@
 import React from "react";
-import {getPath} from "../utils/router-paths";
 import QRCode from "qrcode.react";
 import {Button} from "antd";
 import {DownloadOutlined} from "@ant-design/icons/lib";

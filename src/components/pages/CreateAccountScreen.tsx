@@ -4,10 +4,10 @@ import {Row, Typography, Button, Col} from 'antd';
 import {connect} from 'react-redux';
 import {SyncOutlined, LoginOutlined} from '@ant-design/icons';
 import {withRouter, RouteComponentProps} from "react-router-dom";
-import {getPath} from "../utils/router-paths";
-import {faucetAboundAsync} from "../features/faucet/actions";
-import {login} from "../features/auth/actions";
-import {generateNewAccount} from "../features/lisk-node-api/utils";
+import {getPath} from "utils/router-paths";
+import {faucetAboundAsync} from "features/faucet/actions";
+import {login} from "features/auth/actions";
+import {generateNewAccount} from "features/lisk-node-api/utils";
 import {LiskAccountCredentials} from 'services/types';
 
 type State = {

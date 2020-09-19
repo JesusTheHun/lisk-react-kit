@@ -6,8 +6,8 @@ import {Col, Row} from "antd/es";
 import {connect} from 'react-redux';
 import lisk from '@liskhq/lisk-client';
 import {withRouter, RouteComponentProps} from "react-router-dom";
-import {getPath} from "../utils/router-paths";
-import {login} from "../features/auth/actions";
+import {getPath} from "utils/router-paths";
+import {login} from "features/auth/actions";
 
 type State = {};
 

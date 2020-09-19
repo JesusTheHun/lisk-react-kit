@@ -3,14 +3,14 @@ import {FormattedMessage} from 'react-intl';
 import {Typography, Button, Modal} from 'antd';
 import {connect} from 'react-redux';
 import {withRouter, RouteComponentProps} from "react-router-dom";
-import {getPath} from "../utils/router-paths";
-import MainLayout from "../layouts/MainLayout";
-import AccountDetailsComponent from "../components/AccountDetails";
-import QRCodeModal from "../components/QRCodeModal";
+import {getPath} from "utils/router-paths";
+import MainLayout from "components/layouts/MainLayout";
+import AccountDetailsComponent from "components/AccountDetails";
+import QRCodeModal from "components/QRCodeModal";
 import {QrcodeOutlined} from '@ant-design/icons';
 import _ from "lodash";
-import {RootState} from "../store/types";
-import {fetchAccountAsync} from "../features/lisk-node-api/actions/account";
+import {RootState} from "store/types";
+import {fetchAccountAsync} from "features/lisk-node-api/actions/account";
 
 type State = {
   isModalOpen: boolean;

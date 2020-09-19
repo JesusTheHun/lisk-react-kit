@@ -1,15 +1,15 @@
 import {Menu} from "antd";
 import {Link, RouteComponentProps, withRouter} from "react-router-dom";
-import {getPath} from "../utils/router-paths";
+import {getPath} from "utils/router-paths";
 import SubMenu from "antd/es/menu/SubMenu";
 import React from "react";
 import {UserAddOutlined} from '@ant-design/icons';
 import {LoginOutlined, UserOutlined} from "@ant-design/icons/lib";
 import {connect} from "react-redux";
 import {Location} from "history";
-import {logout} from "../features/auth/actions";
-import {fetchAccountAsync} from "../features/lisk-node-api/actions/account";
-import {RootState} from "../store/types";
+import {logout} from "features/auth/actions";
+import {fetchAccountAsync} from "features/lisk-node-api/actions/account";
+import {RootState} from "store/types";
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & RouteComponentProps<any>;
 
