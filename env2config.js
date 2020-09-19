@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const reactPrefix = 'REACT_APP_';
-const files = [];
+const files = ['.env'];
 const env = {};
 
 switch (process.env.NODE_ENV) {
